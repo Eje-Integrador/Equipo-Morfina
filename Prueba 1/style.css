@@ -1,0 +1,174 @@
+/* --- CUERPO GENERAL --- */
+body {
+  margin: 0;
+  font-family: sans-serif; /* fuente/tipografía */
+  background-color: aliceblue;
+  height: 200vh;
+}
+
+/* --- BOTÓN DE MENÚ --- */
+.menu-center {
+  position: fixed;
+  bottom: 3%;
+  left: 10%;
+  z-index: 1000;
+}
+
+.menu-center img {
+  width: 1080px; /* ancho */
+  height: 70px; /* altura */
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-center img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* --- MENÚ DESPLEGABLE --- */
+.menu {
+  position: fixed;
+  bottom: 15%;
+  left: 45%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.0);
+  display: none; 
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  z-index: 999;
+}
+
+.menu.open {
+  display: flex; /* Se muestra al hacer clic */
+}
+
+.menu a img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.menu a img:hover {
+  transform: scale(1.1);
+}
+
+/* --- BOTÓN CONVOCATORIA --- */
+.convo {
+  position: fixed;
+  bottom: 3%;
+  right: 10%;
+  z-index: 1000;
+}
+
+.convo img {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 50%;
+}
+
+.convo img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* --- VENTANA FLOTANTE PDF --- */
+.pdf-modal {
+  display: none;
+  position: fixed; /* Para que permanezca sin cambios aún cuando se haga scroll */
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05); /* un toque translúcido */
+  backdrop-filter: blur(8px); /*  desenfoque del fondo */
+  -webkit-backdrop-filter: blur(8px); /* compatibilidad con Safari */
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  transition: backdrop-filter 0.3s ease, background 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  display: flex;
+}
+.pdf-modal.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.pdf-content {
+  background: white;
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pdf-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+#close-pdf {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* --- BACKGROUND CON TRANSICIÓN SUAVE --- */
+.background-slideshow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.background-slideshow .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: fadeSlide 25s infinite;
+}
+
+/* Tiempos diferentes a cada imagen */
+.background-slideshow .slide:nth-child(1) { animation-delay: 0s; }
+.background-slideshow .slide:nth-child(2) { animation-delay: 5s; }
+.background-slideshow .slide:nth-child(3) { animation-delay: 10s; }
+.background-slideshow .slide:nth-child(4) { animation-delay: 15s; }
+.background-slideshow .slide:nth-child(5) { animation-delay: 20s; }
+
+/*  Animación de desvanecimiento */
+@keyframes fadeSlide {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  20%  { opacity: 1; }
+  30%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Pendientes: 
+- Terminar de acomodar bien y comentar todo el código que se lleva de momento
+- Redimensionar en PORCENTAJE para que no se altere la forma al usar distintas pantallas*/

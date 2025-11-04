@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Correspondencias</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+
+  <!-- BOTÓN FLOTANTE CENTRAL (MENÚ) -->
+  <div class="menu-center">
+    <img src="img/menu.jpg" id="menu-btn" alt="Menú" />
+  </div>
+
+  <!-- MENÚ NORMAL (ya no abanico) -->
+  <nav class="menu" id="menu">
+    <a href="index.html"><img src="img/inicio.jpg" alt="Inicio"></a>
+    <a href="coleccion.html"><img src="img/coleccion.jpg" alt="Colección"></a>
+    <a href="boton-dos.html"><img src="img/colabora.jpg" alt="Colabora"></a>
+    <a href="nosotrxs.html"><img src="img/nosotrxs.jpg" alt="Nosotrxs"></a>
+  </nav>
+
+  <!-- BOTÓN CONVOCATORIA -->
+  <div class="convo">
+    <img src="img/convo.png" id="convo-btn" alt="Convocatoria" />
+  </div>
+
+  <!-- VENTANA FLOTANTE PARA PDF -->
+  <div id="pdf-modal" class="pdf-modal">
+    <div class="pdf-content">
+      <span id="close-pdf">&times;</span>
+      <iframe src="docs/invitación.pdf"></iframe>
+    </div>
+  </div>
+
+  <!-- IMÁGENES DE FONDO (PREVISUALIZACIÓN DE COLECCIÓN) -->
+  <div class="background-slideshow">
+    <div class="slide" style="background-image: url('img/pru2.jpg')"></div>
+    <div class="slide" style="background-image: url('img/pru3.jpg')"></div>
+    <div class="slide" style="background-image: url('img/pru4.jpg')"></div>
+    <div class="slide" style="background-image: url('img/pru5.jpg')"></div>
+    <div class="slide" style="background-image: url('img/pru6.jpg')"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
