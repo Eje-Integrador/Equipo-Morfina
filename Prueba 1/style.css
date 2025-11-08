@@ -172,3 +172,37 @@ body {
 /* Pendientes: 
 - Terminar de acomodar bien y comentar todo el código que se lleva de momento
 - Redimensionar en PORCENTAJE para que no se altere la forma al usar distintas pantallas*/
+
+.boton{
+  background-color: #3e6ee7;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.gallery img {
+  width: 25%;
+  height: 25%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
