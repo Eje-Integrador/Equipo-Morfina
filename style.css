@@ -32,12 +32,12 @@ body {
 .menu {
   position: fixed;
   bottom: 15%;
-  left: 45%;
+  left: 25%;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.0);
   display: none; 
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
+  gap: 40px;
   padding: 10px;
   z-index: 999;
 }
@@ -205,4 +205,9 @@ body {
 
 .gallery img:hover {
   transform: scale(1.05);
+}
+
+.pru{
+  width: 50px;
+  height: 15px;
 }
