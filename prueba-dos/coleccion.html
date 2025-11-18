@@ -1,12 +1,12 @@
-<!--_______________SOBRE NOSOTRXS HTML_______________-->
+<!--_______________COLECCIÓN HTML_______________-->
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Corporalidades</title>
-  <link rel="stylesheet" href="style_nos.css" />
+  <title>Corpluralidades</title>
+  <link rel="stylesheet" href="style_cole.css" />
 </head>
 <body>
   <div class="app-content" id="appContent">
@@ -22,21 +22,21 @@
 
     <!-- Aquí va el resto del contenido que quieras mostrar -->
     <div class="demo-content">
-      <h1>Sobre nosotrxs</h1>
-      <p>Texto</p>
+        <h1>Colección</h1>
     </div>
+
   </div>
 
   <!-- BARRA INFERIOR: botón izquierdo, botón central (menú) y botón derecho (PDF) -->
   <div class="bottom-bar" role="group" aria-label="Barra inferior de navegación">
     <!-- Botón izquierdo: navega a otra página -->
-    <a href="otra-pagina.html" class="bar-btn bar-left" id="leftBtn" aria-label="Ir a otra página">
+    <a href="nosotrxs.html" class="bar-btn bar-left" id="leftBtn" aria-label="Ir a otra página">
       <img src="assets/img/logo.jpg" alt="Sobre nosotrxs">
     </a>
 
     <!-- Botón central: tu botón de menú (mismo id para mantener JS) -->
     <button id="hamburguerBtn" class="bar-btn bar-center hamburguer-btn" aria-expanded="false" aria-controls="menuPanel" aria-label="Abrir Menú">
-      <img src="assets/img/Menú.png" alt="Abrir menú" id="hamburguer-img"/>
+      <img src="/img/Menú.png" alt="Abrir menú" id="hamburguer-img"/>
     </button>
 
     <!-- Botón derecho: abrir PDF en modal (ruta en data-pdf) -->
@@ -51,16 +51,17 @@
     <div class="menu-inner" role="none" aria-label="Panel de navegación">
 
       <nav class="menu-links" role="navigation" aria-label="Enlaces principales">
+        
         <a href="index.html" class="menu-link" role="menuitem" tabindex="0">
           <img src="assets/img/INICIO.png" alt="Inicio">
         </a>
 
         <a href="coleccion.html" class="menu-link" role="menuitem" tabindex="0">
-          <img src="assets/img/Colabora.png" alt="Colección">
+          <img src="assets/img/coleccion.png" alt="Colección">
         </a>
 
         <a href="colabora.html" class="menu-link" role="menuitem" tabindex="0">
-          <img src="assets/img/coleccion.png" alt="Colabora">
+          <img src="assets/img/Colabora.png" alt="Colabora">
         </a>
       </nav>
     </div>
@@ -75,6 +76,6 @@
     </div>
   </div>
 
-  <script src="script_nos.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

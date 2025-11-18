@@ -1,4 +1,4 @@
-//_______________SOBRE NOSOTRXS SCRIPT_______________
+//_______________COLECCIÓN SCRIPT_______________
 
 // script.js - versión completa integrada (menú + visor PDF)
 // ---------------------------------------------------------

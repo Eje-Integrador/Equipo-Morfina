@@ -1,5 +1,5 @@
 /* =========================================================
-   style.css - versión consolidada (sin modificar proporciones)
+   SOBRE NOSOTRXS CSS
    ========================================================= */
 
 /* ---------- RESET BÁSICO ---------- */
@@ -27,6 +27,7 @@ html, body { height: 100%; width: 100%; font-family: system-ui, -apple-system, "
   color: white;
   text-align: center;
   z-index: 1;
+  margin-top: 10%;
 }
 
 /* =========================================================
@@ -326,3 +327,16 @@ body.pdf-open .bar-right {
   transform: scale(0.9);
   transition: transform 10ms ease;
 }
+
+header {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+}
+
+.header-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+

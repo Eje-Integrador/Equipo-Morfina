@@ -1,3 +1,5 @@
+//_______________SOBRE NOSOTRXS SCRIPT_______________
+
 // script.js - versión completa integrada (menú + visor PDF)
 // ---------------------------------------------------------
 

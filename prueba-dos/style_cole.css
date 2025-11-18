@@ -1,5 +1,5 @@
 /* =========================================================
-   INDEX HTML (HOME)
+   COLECCIÓN CSS
    ========================================================= */
 
 /* ---------- RESET BÁSICO ---------- */
@@ -27,6 +27,7 @@ html, body { height: 100%; width: 100%; font-family: system-ui, -apple-system, "
   color: white;
   text-align: center;
   z-index: 1;
+  margin-top: 10%;
 }
 
 /* =========================================================
@@ -338,3 +339,4 @@ header {
   height: auto;
   display: block;
 }
+
