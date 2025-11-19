@@ -1,213 +1,340 @@
-/* --- CUERPO GENERAL --- */
-body {
-  margin: 0;
-  font-family: sans-serif; /* fuente/tipografía */
-  background-color: aliceblue;
-  height: 200vh;
+/* =========================================================
+   INDEX HTML (HOME)
+   ========================================================= */
+
+/* ---------- RESET BÁSICO ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; width: 100%; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
+/* ---------- CONTENEDOR / FONDO ---------- */
+.app-content {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  transition: filter 300ms ease;
 }
 
-/* --- BOTÓN DE MENÚ --- */
-.menu-center {
+/* Fondo: la imagen ocupa el 100% del contenedor */
+.bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Demo content (ejemplo) */
+.demo-content {
+  position: relative;
+  width: 90%;
+  margin: 5% auto 12% auto; /* deja espacio inferior para la barra del menú */
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+
+/* =========================================================
+   BOTÓN DEL MENÚ (barra inferior centrada original)
+   NO modifiqué las proporciones
+   ========================================================= */
+/* El botón está centrado horizontalmente y a un % desde el fondo */
+.hamburguer-btn {
   position: fixed;
+  left: 50%;
   bottom: 3%;
-  left: 10%;
+  transform: translateX(-50%);
+  width: 30%;
+  max-width: 280px;
+  min-width: 120px;
+  aspect-ratio: 4.44 / 1;
+  border: none;
+  background: transparent;
+  padding: 0;
   z-index: 1000;
-}
-
-.menu-center img {
-  width: 1080px; /* ancho */
-  height: 70px; /* altura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  border-radius: 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 150ms ease, opacity 200ms ease;
+  opacity: 0.75;
 }
 
-.menu-center img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+.hamburguer-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
 }
 
-/* --- MENÚ DESPLEGABLE --- */
-.menu {
+.hamburguer-btn:active { transform: translateX(-50%) scale(0.98); }
+
+/* =========================================================
+   PANEL DEL MENÚ (oculto por defecto) - sin tocar forma
+   ========================================================= */
+.menu-panel {
   position: fixed;
-  bottom: 15%;
-  left: 25%;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.0);
-  display: none; 
-  flex-direction: row;
-  gap: 40px;
-  padding: 10px;
-  z-index: 999;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 900px;
+  z-index: 1500;
+  pointer-events: none;
 }
 
-.menu.open {
-  display: flex; /* Se muestra al hacer clic */
+.menu-backdrop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+  border-radius: 16px;
 }
 
-.menu a img {
-  width: 50px;
-  height: 50px;
+.menu-inner {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  backdrop-filter: blur(6px);
+  border-radius: 14px 14px 8px 8px;
+  padding: 3% 4%;
+  transform: translateY(110%);
+  transition: transform 350ms cubic-bezier(.22,.9,.12,1), box-shadow 200ms;
+  pointer-events: auto;
+}
+
+.menu-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 4%;
+  align-items: center;
+  padding-top: 6%;
+  padding-bottom: 10%;
+}
+
+.menu-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  width: 30%;
+  min-width: 18%;
+  transition: transform 160ms ease;
+  color: #ffffff;
+}
+
+.menu-link img {
+  width: 100%;
+  height: auto;
+  display: block;
   border-radius: 8px;
   object-fit: cover;
-  transition: transform 0.2s ease;
+  aspect-ratio: 3.75 / 1;
+  opacity: 0.6;
 }
 
-.menu a img:hover {
-  transform: scale(1.1);
+.menu-link:focus,
+.menu-link:hover {
+  transform: translateY(-4%);
+  outline: none;
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.12);
 }
 
-/* --- BOTÓN CONVOCATORIA --- */
-.convo {
+/* ---------- ESTADOS cuando el menú está abierto ---------- */
+body.menu-open .app-content {
+  filter: blur(6px);
+}
+
+body.menu-open .menu-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.menu-open .menu-inner {
+  transform: translateY(0%);
+}
+
+/* Mantengo la regla para compatibilidad */
+body.menu-open .hamburguer-btn { opacity: 0; pointer-events: none; }
+
+/* Adaptaciones muy pequeñas (pantallas estrechas) */
+@media (max-width: 500px) {
+  .hamburguer-btn { width: 40%; min-width: 48px; }
+  .menu-link { width: 30%; min-width: 22%; }
+  .menu-inner { padding: 5% 4%; }
+}
+
+/* =========================================================
+   BOTTOM BAR (3 botones) - manteniendo tamaños y proporciones
+   ========================================================= */
+.bottom-bar {
   position: fixed;
+  left: 50%;
   bottom: 3%;
-  right: 10%;
+  transform: translateX(-50%);
+  width: 84%;
+  max-width: 1000px;
+  min-width: 260px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3%;
   z-index: 1000;
+  pointer-events: auto;
 }
 
-.convo img {
-  width: 70px;
-  height: 70px;
+.bar-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  border-radius: 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* laterales - circulares 1:1 (respetando tus tamaños) */
+.bar-left, .bar-right {
+  width: 5%;
+  min-width: 56px;
+  max-width: 35px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
+  overflow: hidden;
 }
 
-.convo img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-}
-
-/* --- VENTANA FLOTANTE PDF --- */
-.pdf-modal {
-  display: none;
-  position: fixed; /* Para que permanezca sin cambios aún cuando se haga scroll */
-  top: 0; 
-  left: 0;
+.bar-left img, .bar-right img {
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.05); /* un toque translúcido */
-  backdrop-filter: blur(8px); /*  desenfoque del fondo */
-  -webkit-backdrop-filter: blur(8px); /* compatibilidad con Safari */
-  justify-content: center;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 80%;
+}
+
+/* Botón central: respetando la proporción y SIN redondear */
+.bar-center {
+  width: 28%;
+  min-width: 120px;
+  max-width: 360px;
+  aspect-ratio: 4.44 / 1;
+  overflow: hidden;
+  /* NO border-radius: mantiene la forma original */
+}
+
+.bar-center img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+/* Evitar encimado en pantallas pequeñas */
+@media (max-width: 500px) {
+  .bottom-bar {
+    width: 92%;
+    gap: 4%;
+  }
+  .bar-left, .bar-right {
+    width: 18%;
+    min-width: 48px;
+  }
+  .bar-center {
+    width: 48%;
+    min-width: 110px;
+  }
+}
+
+/* =========================================================
+   PDF Modal (visor) - colocado por encima (no recibe blur)
+   ========================================================= */
+.pdf-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
   align-items: center;
-  z-index: 2000;
-  transition: backdrop-filter 0.3s ease, background 0.3s ease;
+  justify-content: center;
+  z-index: 99999;     /* muy alto para estar por encima de cualquier blur */
+  isolation: isolate; /* crea nuevo contexto de apilamiento */
+  pointer-events: auto;
+}
+.pdf-modal[aria-hidden="false"] { display: flex; }
+
+.pdf-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.pdf-sheet {
+  position: relative;
+  z-index: 100;
+  width: 86%;
+  max-width: 1100px;
+  height: 78%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.pdf-close {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  z-index: 20;
+  background: transparent;
+  border: none;
+  font-size: 160%;
+  cursor: pointer;
+}
+
+.pdf-sheet iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Cuando el PDF está abierto, aplicamos el blur al contenido (igual que menu-open) */
+body.pdf-open .app-content {
+  filter: blur(6px);
+  transition: filter 50ms ease;
+}
+
+/* =========================================================
+   Ocultar la bottom-bar cuando el menú o el PDF están abiertos
+   (esto hace que la barra y sus botones desaparezcan como pediste)
+   ========================================================= */
+body.menu-open .bottom-bar,
+body.pdf-open .bottom-bar {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
-  display: flex;
-}
-.pdf-modal.show {
-  opacity: 1;
-  pointer-events: all;
+  transition: opacity 50ms ease, transform 50ms ease;
 }
 
-.pdf-content {
-  background: white;
-  width: 80%;
-  height: 80%;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
+body.menu-open .bar-left,
+body.menu-open .bar-right,
+body.pdf-open .bar-left,
+body.pdf-open .bar-right {
+  transform: scale(0.9);
+  transition: transform 10ms ease;
 }
 
-.pdf-content iframe {
+header {
   width: 100%;
-  height: 100%;
-  border: none;
-}
-
-#close-pdf {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 28px;
-  cursor: pointer;
-  color: #333;
-}
-
-/* --- BACKGROUND CON TRANSICIÓN SUAVE --- */
-.background-slideshow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;
-}
-
-.background-slideshow .slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  animation: fadeSlide 25s infinite;
-}
-
-/* Tiempos diferentes a cada imagen */
-.background-slideshow .slide:nth-child(1) { animation-delay: 0s; }
-.background-slideshow .slide:nth-child(2) { animation-delay: 5s; }
-.background-slideshow .slide:nth-child(3) { animation-delay: 10s; }
-.background-slideshow .slide:nth-child(4) { animation-delay: 15s; }
-.background-slideshow .slide:nth-child(5) { animation-delay: 20s; }
-
-/*  Animación de desvanecimiento */
-@keyframes fadeSlide {
-  0%   { opacity: 0; }
-  10%  { opacity: 1; }
-  20%  { opacity: 1; }
-  30%  { opacity: 0; }
-  100% { opacity: 0; }
-}
-
-/* Pendientes: 
-- Terminar de acomodar bien y comentar todo el código que se lleva de momento
-- Redimensionar en PORCENTAJE para que no se altere la forma al usar distintas pantallas*/
-
-.boton{
-  background-color: #3e6ee7;
-  border: none;
-  color: white;
-  padding: 15px 32px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+  position: fixed;
 }
 
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  padding: 10px;
-}
-
-.gallery img {
-  width: 25%;
-  height: 25%;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 0 6px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-.pru{
-  width: 50px;
-  height: 15px;
+.header-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }

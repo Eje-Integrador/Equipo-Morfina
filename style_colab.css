@@ -1,5 +1,5 @@
 /* =========================================================
-   INDEX HTML (HOME)
+   COLABORA CSS
    ========================================================= */
 
 /* ---------- RESET BÁSICO ---------- */
@@ -27,6 +27,7 @@ html, body { height: 100%; width: 100%; font-family: system-ui, -apple-system, "
   color: white;
   text-align: center;
   z-index: 1;
+  margin-top: 10%;
 }
 
 /* =========================================================
@@ -181,8 +182,11 @@ body.menu-open .hamburguer-btn { opacity: 0; pointer-events: none; }
   align-items: center;
   gap: 3%;
   z-index: 1000;
-  pointer-events: auto;
+  pointer-events: 
+  auto;filter: none !important;
+  backdrop-filter: none !important;
 }
+
 
 .bar-btn {
   background: transparent;
@@ -338,3 +342,33 @@ header {
   height: auto;
   display: block;
 }
+
+
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.gallery img {
+  width: 25%;
+  height: 25%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.pru{
+  width: 50px;
+  height: 15px;
+}
+
+

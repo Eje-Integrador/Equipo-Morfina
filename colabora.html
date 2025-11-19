@@ -1,15 +1,18 @@
-<!--_______________COLABORA HTML_______________-->
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Corpluralidades</title>
-  <link rel="stylesheet" href="style_cole.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="script_colab.js"></script>
+   <link rel="stylesheet" href="style_colab.css" />
+  
+
 </head>
 <body>
-  <div class="app-content" id="appContent">
+  
+   <div class="app-content" id="appContent">
     <!--_______IMAGEN DE FONDO_______-->
     <div class="bg">
       <img src="assets/img/fondo.png" alt="Fondo" id="bgImage" />
@@ -24,7 +27,14 @@
     <div class="demo-content">
         <h1>Espacio de colaboración</h1>
         <!--AQUÍ SE PONE TODO EL CONTENIDO DE LOS TRABAJOS-->
-    </div>
+      <div class="upload-area">
+    <input type="file" id="photoInput" accept="image/*">
+    <button id="uploadBtn">Subir Foto</button>
+    <div id="previewContainer"></div>
+  </div>
+
+  <h2>Galería</h2>
+  <div class="gallery" id="gallery"></div>
 
   </div>
 
@@ -76,7 +86,6 @@
       <iframe id="pdfFrame" src="" frameborder="0" title="Documento PDF"></iframe>
     </div>
   </div>
-
-  <script src="script.js"></script>
+   
 </body>
 </html>
