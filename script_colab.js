@@ -306,3 +306,35 @@ uploadBtn.addEventListener('click', async () => {
 });
 
 loadGallery();
+
+
+
+
+const upload = document.getElementById("uploadBtn");
+const photoInput = document.getElementById("photoInput");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const closeLightbox = document.getElementById("closeLightbox");
+
+
+// Abrir lightbox al dar click en cualquier imagen (dinámica o no)
+gallery.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG") {
+        lightboxImg.src = e.target.src;
+        lightbox.classList.remove("hidden");
+    }
+});
+
+// Cerrar con botón
+closeLightbox.addEventListener("click", () => {
+    lightbox.classList.add("hidden");
+});
+
+// Cerrar al hacer click fuera de la imagen
+lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+        lightbox.classList.add("hidden");
+    }
+});
+
+//Supa fer

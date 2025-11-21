@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Corpluralidades</title>
 
     <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script defer src="script_colab.js"></script>
@@ -35,8 +35,16 @@
                 <div id="previewContainer"></div>
             </div>
 
-            <h2>Galería</h2>
-            <div class="gallery" id="gallery"></div>
+          <!--formato de imagen -->
+            <div class="gallery" id="gallery">
+            </div>
+  <!--Modal -->
+            <div id="lightbox" class="lightbox hidden">
+    <span id="closeLightbox" class="close-btn">&times;</span>
+    <img id="lightboxImg" src="" alt="vista">
+</div>
+   
+
         </div>
 
         <!-- BARRA INFERIOR -->

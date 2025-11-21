@@ -222,3 +222,5 @@ if (pdfBtn) {
   });
   observer.observe(pdfBtn, { attributes: true, attributeFilter: ['data-pdf'] });
 }
+
+// Font
