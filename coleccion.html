@@ -25,60 +25,83 @@
     <div class="demo-content">
         <h1>Colección</h1>
         
-       
+<img src="assets/img/1.png" alt="Imagen 1" class="myImg">
+<img src="assets/img/2.png" alt="Imagen 2" class="myImg">
+<img src="assets/img/3.png" alt="Imagen 3" class="myImg">
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+
+   </div>
+
+        <!-- BARRA INFERIOR -->
+        <div class="bottom-bar" role="group" aria-label="Barra inferior de navegación">
+
+            <!-- Botón izquierdo -->
+            <a href="nosotrxs.html" class="bar-btn bar-left" id="leftBtn" aria-label="Ir a otra página">
+                <img src="assets/img/logo.jpg" alt="Sobre nosotrxs">
+            </a>
+
+            <!-- Botón central: MENÚ -->
+            <button id="hamburguerBtn" class="bar-btn bar-center hamburguer-btn"
+                    aria-expanded="false" aria-controls="menuPanel" aria-label="Abrir Menú">
+                <img src="assets/img/Menú.png" alt="Abrir menú" id="hamburguer-img"/>
+            </button>
+
+            <!-- Botón derecho: PDF -->
+            <button id="pdfBtn" class="bar-btn bar-right" aria-haspopup="dialog"
+                    aria-controls="pdfModal" aria-label="Abrir PDF"
+                    data-pdf="assets/docs/convocatoria.pdf">
+                <img src="assets/img/Mano.png" alt="Abrir PDF">
+            </button>
+
+        </div>
+    </div> <!-- Cierra app-content -->
+
+
+    <!-- === AHORA EL MENÚ ESTÁ FUERA DEL CONTENIDO (CORREGIDO) === -->
+    <aside id="menuPanel" class="menu-panel" role="menu" aria-hidden="true">
+        <div class="menu-backdrop" id="menuBackdrop" data-close></div>
+
+        <div class="menu-inner" role="none" aria-label="Panel de navegación">
+            <nav class="menu-links" role="navigation" aria-label="Enlaces principales">
+
+                <a href="index.html" class="menu-link" role="menuitem" tabindex="0">
+                    <img src="assets/img/INICIO.png" alt="Inicio">
+                </a>
+
+                <a href="coleccion.html" class="menu-link" role="menuitem" tabindex="0">
+                    <img src="assets/img/coleccion.png" alt="Colección">
+                </a>
+
+                <a href="colabora.html" class="menu-link" role="menuitem" tabindex="0">
+                    <img src="assets/img/Colabora.png" alt="Colabora">
+                </a>
+
+            </nav>
+        </div>
+    </aside>
+
+
+    <!-- VISOR PDF -->
+    <div id="pdfModal" class="pdf-modal" role="dialog" aria-modal="true"
+         aria-hidden="true" aria-label="Visor de PDF">
+
+        <div class="pdf-backdrop" id="pdfBackdrop" data-close></div>
+
+        <div class="pdf-sheet" role="document">
+            <button id="pdfClose" class="pdf-close" aria-label="Cerrar visor PDF">&times;</button>
+            <iframe id="pdfFrame" src="" frameborder="0" title="Documento PDF"></iframe>
+        </div>
+
     </div>
 
-  </div>
 
-  <!-- BARRA INFERIOR: botón izquierdo, botón central (menú) y botón derecho (PDF) -->
-  <div class="bottom-bar" role="group" aria-label="Barra inferior de navegación">
-    <!-- Botón izquierdo: navega a otra página -->
-    <a href="nosotrxs.html" class="bar-btn bar-left" id="leftBtn" aria-label="Ir a otra página">
-      <img src="assets/img/logo.jpg" alt="Sobre nosotrxs">
-    </a>
-
-    <!-- Botón central: tu botón de menú (mismo id para mantener JS) -->
-    <button id="hamburguerBtn" class="bar-btn bar-center hamburguer-btn" aria-expanded="false" aria-controls="menuPanel" aria-label="Abrir Menú">
-      <img src="assets/img/Menú.png" alt="Abrir menú" id="hamburguer-img"/>
-    </button>
-
-    <!-- Botón derecho: abrir PDF en modal (ruta en data-pdf) -->
-    <button id="pdfBtn" class="bar-btn bar-right" aria-haspopup="dialog" aria-controls="pdfModal" aria-label="Abrir PDF" data-pdf="assets/docs/convocatoria.pdf">
-      <img src="assets/img/Mano.png" alt="Abrir PDF">
-    </button>
-  </div>
-
-  <!--_______PANEL DEL MENÚ OCULTO_______-->
-  <aside id="menuPanel" class="menu-panel" role="menu" aria-hidden="true">
-    <div class="menu-backdrop" id="menuBackdrop" data-close></div>
-    <div class="menu-inner" role="none" aria-label="Panel de navegación">
-
-      <nav class="menu-links" role="navigation" aria-label="Enlaces principales">
-        
-        <a href="index.html" class="menu-link" role="menuitem" tabindex="0">
-          <img src="assets/img/INICIO.png" alt="Inicio">
-        </a>
-
-        <a href="coleccion.html" class="menu-link" role="menuitem" tabindex="0">
-          <img src="assets/img/coleccion.png" alt="Colección">
-        </a>
-
-        <a href="colabora.html" class="menu-link" role="menuitem" tabindex="0">
-          <img src="assets/img/Colabora.png" alt="Colabora">
-        </a>
-      </nav>
-    </div>
-  </aside>
-
-  <!-- Modal para mostrar PDF: debe ser hermano directo de <body> -->
-  <div id="pdfModal" class="pdf-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Visor de PDF">
-    <div class="pdf-backdrop" id="pdfBackdrop" data-close></div>
-    <div class="pdf-sheet" role="document">
-      <button id="pdfClose" class="pdf-close" aria-label="Cerrar visor PDF">&times;</button>
-      <iframe id="pdfFrame" src="" frameborder="0" title="Documento PDF"></iframe>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+  <script src="script_cole.js"></script>
 </body>
 </html>

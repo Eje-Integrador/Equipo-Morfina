@@ -225,233 +225,65 @@ if (pdfBtn) {
 
 //SUPABASE
 
-const SUPABASE_URL = "https://rqsewzppphnljpjghlzb.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxc2V3enBwcGhubGpwamdobHpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2NTE0ODEsImV4cCI6MjA3NzIyNzQ4MX0.JA785SoB210vTRMfrT0tfQsW8K-3xPbn7HnyrV_97bI";
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const input = document.getElementById('photoInput');
-const uploadBtn = document.getElementById('uploadBtn');
-const gallery = document.getElementById('gallery');
-const previewContainer = document.getElementById('previewContainer');
 
-// ----------------------
-// Cargar galería desde tabla fotos_1
-// ----------------------
-async function loadGallery() {
-  const { data, error } = await supabase
-    .from('fotos_1')
+
+
+// Supabase TEXTO 
+
+const SUPABASE_URL_TEXT = "https://imcpvcmxqquhhdfmkwyx.supabase.co"; 
+const SUPABASE_ANON_KEY_TEXT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltY3B2Y214cXF1aGhkZm1rd3l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTUwODQsImV4cCI6MjA3NzQ5MTA4NH0.RY94No2SGDTg44_W8iDIkQIFwb9q27LxP2W-XB_lWSM";
+
+const supabase_text = window.supabase.createClient(SUPABASE_URL_TEXT, SUPABASE_ANON_KEY_TEXT);
+
+const textInput = document.getElementById('textInput');
+const saveBtn = document.getElementById('saveBtn');
+const textGallery = document.getElementById('textGallery');
+
+// Cargar textos al inicio
+Cargartextos();
+
+async function Cargartextos() {
+  const { data, error } = await supabase_text
+    .from('Corplu_text')
     .select('*')
-    .order('fecha', { ascending: false });
+    .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Error al cargar la galería:', error);
+    console.error("Error al cargar textos:", error);
     return;
   }
 
-  gallery.innerHTML = '';
+  textGallery.innerHTML = '';
+
   data.forEach(item => {
-    const img = document.createElement('img');
-    img.src = item.url;
-    img.addEventListener("click", () => openLightbox(item.url));
-    gallery.appendChild(img);
+    const div = document.createElement('div');
+    div.className = "text-item";
+    div.textContent = item.text;
+    textGallery.appendChild(div);
   });
 }
 
-loadGallery();
+saveBtn.addEventListener('click', async () => {
+  const text = textInput.value.trim();
 
-// ----------------------
-// Vista previa normal
-// ----------------------
-input.addEventListener('change', () => {
-  const file = input.files[0];
-  previewContainer.innerHTML = '';
+  if (!text) return alert("Escribe algo antes de guardar.");
 
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = document.createElement('img');
-      img.src = e.target.result;
-      previewContainer.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-  }
-});
+  saveBtn.disabled = true;
+  saveBtn.textContent = "Guardando...";
 
-// ----------------------
-// Subir foto a galería
-// ----------------------
-uploadBtn.addEventListener('click', async () => {
-  const file = input.files[0];
-  if (!file) return alert('Selecciona una imagen primero.');
-
-  uploadBtn.disabled = true;
-  uploadBtn.textContent = "Subiendo...";
-
-  const fileName = `${Date.now()}-${file.name}`;
-  const { error: uploadError } = await supabase.storage
-    .from('Tema_1')
-    .upload(fileName, file);
-
-  if (uploadError) {
-    alert('Error al subir imagen: ' + uploadError.message);
-    uploadBtn.disabled = false;
-    uploadBtn.textContent = "Subir Foto";
-    return;
-  }
-
-  const { data: publicUrlData } = supabase.storage
-    .from('Tema_1')
-    .getPublicUrl(fileName);
-
-  const imageUrl = publicUrlData.publicUrl;
-
-  const { error: insertError } = await supabase.from('fotos_1').insert([
-    { url: imageUrl }
-  ]);
-
-  if (insertError) {
-    alert('Error al guardar en la base de datos: ' + insertError.message);
-  }
-
-  previewContainer.innerHTML = '';
-  input.value = '';
-  uploadBtn.disabled = false;
-  uploadBtn.textContent = "Subir Foto";
-
-  loadGallery();
-});
-
-
-// Lightbox / Modal
-
-const light = document.getElementById("lightbox");
-const boxImg = document.getElementById("lightboxImg");
-const modalPreview = document.getElementById("modalPreview");
-const modalInput = document.getElementById("modalPhotoInput");
-
-// Cerrar modal clickeando afuera
-light.addEventListener("click", (e) => {
-  if (e.target === light) {
-    light.classList.add("hidden");
-  }
-});
-
-document.getElementById("closeLightbox").addEventListener("click", () => {
-  light.classList.add("hidden");
-});
-
-// ----------------------
-// ABRIR LIGHTBOX Y CARGAR COMPARACIÓN
-// ----------------------
-async function openLightbox(url) {
-  boxImg.src = url;
-  modalPreview.innerHTML = "";
-  light.classList.remove("hidden");
-
-  // Buscar comparación en Supabase
-  const { data, error } = await supabase
-    .from("dialogo")
-    .select("*")
-    .eq("imagen_actual", url)
-    .order("fecha", { ascending: false })
-    .limit(1);
+  const { error } = await supabase_text
+    .from('Corplu_text')
+    .insert([{ text: text }]);
 
   if (error) {
-    console.error("Error buscando comparación:", error);
-    return;
+    alert('Error al guardar el texto: ' + error.message);
+  } else {
+    textInput.value = '';
+    await loadTexts();
   }
 
-  if (!data || data.length === 0) return;
-
-  const comp = data[0];
-
-  // Crear contenedor lado a lado
-  const cont = document.createElement("div");
-  cont.style.display = "flex";
-  cont.style.gap = "15px";
-  cont.style.marginTop = "12px";
-
-  const original = document.createElement("img");
-  original.src = comp.imagen_actual;
-  original.style.width = "45%";
-  original.style.borderRadius = "10px";
-
-  const nueva = document.createElement("img");
-  nueva.src = comp.imagen_nueva;
-  nueva.style.width = "45%";
-  nueva.style.borderRadius = "10px";
-
-  cont.appendChild(original);
-  cont.appendChild(nueva);
-  modalPreview.appendChild(cont);
-}
-
-// ----------------------
-// Vista previa modal
-// ----------------------
-modalInput.addEventListener("change", () => {
-  const file = modalInput.files[0];
-  modalPreview.innerHTML = "";
-
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = e => {
-    const img = document.createElement("img");
-    img.src = e.target.result;
-    img.style.width = "120px";
-    img.style.borderRadius = "8px";
-    modalPreview.appendChild(img);
-  };
-  reader.readAsDataURL(file);
-});
-
-// ----------------------
-// SUBIR FOTO NUEVA (COMPARACIÓN)
-// ----------------------
-document.getElementById("modalUploadBtn").addEventListener("click", uploadModal);
-
-async function uploadModal() {
-  const file = modalInput.files[0];
-  if (!file) return alert("Selecciona una imagen");
-
-  const originalUrl = boxImg.src;
-  const fileName = `${Date.now()}-comparacion-${file.name}`;
-
-  // Subir imagen nueva
-  const { error: uploadError } = await supabase.storage
-    .from("Tema_1")
-    .upload(fileName, file);
-
-  if (uploadError) {
-    alert("Error al subir desde el modal");
-    return;
-  }
-
-  const { data: publicUrlData } = supabase.storage
-    .from("Tema_1")
-    .getPublicUrl(fileName);
-
-  const newUrl = publicUrlData.publicUrl;
-
-  // Guardar comparación en tabla
-  await supabase.from("dialogo").insert([
-    {
-      imagen_actual: originalUrl,
-      imagen_nueva: newUrl
-    }
-  ]);
-
-  // Limpiar vista previa temporal
-  modalPreview.innerHTML = "";
-  modalInput.value = "";
-
-
-  openLightbox(originalUrl);
-}
-
-
-
-
-
+  saveBtn.disabled = false;
+  saveBtn.textContent = "Guardar Texto";
+}); 
