@@ -235,9 +235,9 @@ const uploadBtn = document.getElementById('uploadBtn');
 const gallery = document.getElementById('gallery');
 const previewContainer = document.getElementById('previewContainer');
 
-// ----------------------
+
 // Cargar galería desde tabla fotos_1
-// ----------------------
+
 async function loadGallery() {
   const { data, error } = await supabase
     .from('fotos_1')
@@ -260,9 +260,9 @@ async function loadGallery() {
 
 loadGallery();
 
-// ----------------------
+
 // Vista previa normal
-// ----------------------
+
 input.addEventListener('change', () => {
   const file = input.files[0];
   previewContainer.innerHTML = '';
@@ -278,9 +278,8 @@ input.addEventListener('change', () => {
   }
 });
 
-// ----------------------
+
 // Subir foto a galería
-// ----------------------
 uploadBtn.addEventListener('click', async () => {
   const file = input.files[0];
   if (!file) return alert('Selecciona una imagen primero.');
@@ -341,9 +340,9 @@ document.getElementById("closeLightbox").addEventListener("click", () => {
   light.classList.add("hidden");
 });
 
-// ----------------------
+
 // ABRIR LIGHTBOX Y CARGAR COMPARACIÓN
-// ----------------------
+
 async function openLightbox(url) {
   boxImg.src = url;
   modalPreview.innerHTML = "";
@@ -387,9 +386,9 @@ async function openLightbox(url) {
   modalPreview.appendChild(cont);
 }
 
-// ----------------------
+
 // Vista previa modal
-// ----------------------
+
 modalInput.addEventListener("change", () => {
   const file = modalInput.files[0];
   modalPreview.innerHTML = "";
@@ -407,9 +406,8 @@ modalInput.addEventListener("change", () => {
   reader.readAsDataURL(file);
 });
 
-// ----------------------
+
 // SUBIR FOTO NUEVA (COMPARACIÓN)
-// ----------------------
 document.getElementById("modalUploadBtn").addEventListener("click", uploadModal);
 
 async function uploadModal() {
