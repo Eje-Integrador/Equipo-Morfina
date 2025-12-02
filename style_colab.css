@@ -345,82 +345,24 @@ header {
   display: block;
 }
 
-/*Colección*/
+.boton{
 
-.gallery {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 12px;
-padding: 10px;
-}
+ background-color: #3524d3; /* Color de fondo */
+  border: none; 
+  color: white; /* Color del texto */
+  padding: 15px 30px; 
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 30px 20px;
+  cursor: pointer; 
+  border-radius: 8px; 
+  transition-duration: 0.4s; 
+  
+  }
 
-
-.gallery img {
-width: 25%;
-height: 25%;
-object-fit: cover;
-border-radius: 10px;
-box-shadow: 0 0 6px rgba(0,0,0,0.2);
-transition: transform 0.2s;
-cursor: pointer;
-}
-
-
-.gallery img:hover {
-transform: scale(1.05);
-}
-
-
-.lightbox {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.8);
-display: flex;
-align-items: center;
-justify-content: center;
-z-index: 999;
-}
-
-
-.lightbox.hidden {
-display: none;
-}
-
-
-.lightbox-content {
-display: flex;
-gap: 20px;
-align-items: center;
-}
-
-
-.lightbox img {
-max-width: 20vw;
-max-height: 45vh;
-border-radius: 12px;
-}
-
-
-.upload-side {
-display: flex;
-flex-direction: column;
-gap: 10px;
-background: #fff;
-padding: 20px;
-border-radius: 12px;
-}
-
-
-.close-btn {
-position: absolute;
-top: 25px;
-right: 35px;
-font-size: 45px;
-cursor: pointer;
-color: white;
-font-weight: bold;
-}
+  .boton:hover{
+     background-color: #121291; /* Cambia el color de fondo al pasar el ratón */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Sombra al pasar el ratón */
+  }

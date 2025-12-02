@@ -7,8 +7,8 @@
   <link rel="icon" type="image/x-icon" href="assets/img/favicon_2.png">
 
     <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script defer src="script_colab.js"></script>
-    <link rel="stylesheet" href="style_colab.css" />
+    <script defer src="script_imag.js"></script>
+    <link rel="stylesheet" href="style_imag.css" />
 </head>
 
 <body>
@@ -28,7 +28,36 @@
 
         <div class="demo-content">
             <h1>Espacio de colaboración -imagen-</h1>
+<!-- Subir foto -->
+<div class="upload-area" >
+  <input  type="file" id="photoInput" accept="image/*" />
+  <button id="uploadBtn" class="boton">Subir Foto</button>
+  <div id="previewContainer"></div>
+</div>
 
+<!-- Galería -->
+<div class="gallery" id="gallery"></div>
+
+<!-- Modal -->
+<div id="lightbox" class="lightbox hidden">
+  <div class="lightbox-bg"></div>
+
+  <div class="lightbox-window">
+    <span id="closeLightbox" class="close-btn" >&times;</span>
+
+    <!-- Imagen principal -->
+    <img id="lightboxImg" src="" alt="vista" />
+
+    <!-- Área de subida secundaria -->
+    <div id="modalExtraArea">
+      <input type="file" id="modalPhotoInput" accept="image/*" />
+      <button id="modalUploadBtn" class="boton">Agregar foto secundaria</button>
+
+      <h4>Vista previa:</h4>
+      <div id="modalPreview"></div>
+    </div>
+  </div>
+</div>
 
         </div>
     </div>
