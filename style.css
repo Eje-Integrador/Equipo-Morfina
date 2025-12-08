@@ -28,7 +28,8 @@ html, body { height: 100%; width: 100%; font-family: system-ui, -apple-system, "
   color: white;
   text-align: center;
   z-index: 1;
-  margin-top: 12%;
+  margin-top: 15%;
+  margin-right: 2.8%;
 
 }
 
@@ -341,4 +342,62 @@ header {
   width: 100%;
   height: auto;
   display: block;
+}
+
+
+/* =========================================================
+  LOOP INFINITO DE CARRUSEL
+========================================================= */
+
+.right-slider {
+  position: absolute;
+  top: 10%;
+  right: 30px;
+  width: 55vw;
+  height: 70vh; /* SOLO media pantalla */
+  overflow: hidden;
+  padding-left: 2%;
+}
+
+/* Banda desplazándose */
+.slider-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
+
+/* Imágenes internas */
+.slider-track img {
+  height: 50vh;
+  width: auto;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+/* Animación */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================================
+  LOOP INFINITO DE CARRUSEL
+========================================================= */
+
+.left-text {
+  position: absolute;
+  top: 120px;
+  left: 0%;
+  width: 45vw;
+  max-width: 400px;
+  z-index: 1500;
+  font-size: 180%;
+  line-height: 1.5;
+  align-items: justify;
+  text-align: justify;
+
 }
