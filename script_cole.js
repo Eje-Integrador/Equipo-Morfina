@@ -222,28 +222,29 @@ if (pdfBtn) {
   });
   observer.observe(pdfBtn, { attributes: true, attributeFilter: ['data-pdf'] });
 }
-// Font
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("myModal");
-    const modalImg = document.getElementById("img01");
-    const captionText = document.getElementById("caption");
-    const closeBtn = document.querySelector(".close");
 
-    // Delegación de eventos: cualquier imagen con .myImg abrirá el modal
-    document.body.addEventListener("click", e => {
-        if (e.target.classList.contains("myImg")) {
-            modal.style.display = "block";
-            modalImg.src = e.target.src;
-            captionText.innerHTML = e.target.alt || "";
-        }
-    });
+const images = document.querySelectorAll('.gallery-img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.close');
 
-    // Cerrar modal
-    closeBtn.onclick = () => modal.style.display = "none";
-    modal.onclick = e => { 
-        if (e.target === modal) modal.style.display = "none"; 
-    };
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'block';
+    lightboxImg.src = img.src;
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+
+// Cerrar haciendo click fuera de la imagen
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.style.display = 'none';
+  }
 });
 

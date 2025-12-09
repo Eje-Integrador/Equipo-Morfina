@@ -353,7 +353,7 @@ header {
   position: absolute;
   top: 10%;
   right: 30px;
-  width: 55vw;
+  width: 60vw;
   height: 70vh; /* SOLO media pantalla */
   overflow: hidden;
   padding-left: 2%;
@@ -385,19 +385,25 @@ header {
 }
 
 /* =========================================================
-  LOOP INFINITO DE CARRUSEL
+  Imagen izquierd fija con descripción
 ========================================================= */
 
-.left-text {
-  position: absolute;
-  top: 120px;
-  left: 0%;
-  width: 45vw;
-  max-width: 400px;
-  z-index: 1500;
-  font-size: 180%;
-  line-height: 1.5;
-  align-items: justify;
-  text-align: justify;
+.left-image-container {
+  position: fixed;        /* Se queda pegada al lado izquierdo */
+  top: 20%;              /* Espacio debajo del encabezado */
+  left: 5%;
+  height: 65%;             /* Espacio del borde izquierdo */
+  width: auto;             /* Puedes ajustar el % para que no invada el carrusel */
+  display: flex;
+  align-items: center;    /* Centra la imagen verticalmente en su espacio */
+  justify-content: center;
+  pointer-events: none;   /* NO bloquea botones detrás */
+  z-index: 9999;
+  opacity: 0.9;
+}
 
+.left-image-container img {
+  max-height: 90%;
+  width: auto;            /* Mantiene proporción vertical */
+  object-fit: contain;
 }

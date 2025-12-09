@@ -350,15 +350,12 @@ header {
   padding: 3%;
   margin-left: 2%;
   float: left;
-  
 }
 
 .flex {
 
    display: flex;
-  flex-direction: column;
-  
-   
+  flex-direction: column; 
 }
 
 p{
@@ -366,6 +363,7 @@ p{
   padding-top: 4.5%;
   margin-right: 5%;
   font-size: 20px;
+  text-align: justify;
 }
 
 h1{

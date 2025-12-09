@@ -226,6 +226,20 @@ if (pdfBtn) {
 
 
 
+// Seleccionar todas las cartas
+const cards = document.querySelectorAll('.card');
 
+// Agregar evento a cada carta
+cards.forEach(card => {
+  card.addEventListener('click', (e) => {
+    e.stopPropagation(); // Para que no se cierre inmediatamente
+    card.classList.toggle('flipped'); // Flip ON/OFF
+  });
+});
 
+// Si clicas fuera de cualquier carta → todas regresan a normal
+document.addEventListener('click', () => {
+  cards.forEach(card => card.classList.remove('flipped'));
+});
 
+//
